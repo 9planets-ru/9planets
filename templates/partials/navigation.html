@@ -24,6 +24,11 @@
             Блог
         </a>
     </li>
+    <li {% if current_path is starting_with("/contact") %} class="active" {% endif %}>
+        <a href="/contact">
+            Контакты
+        </a>
+    </li>
     <li {% if current_path is starting_with("/gallery") %} class="active" {% endif %}>
         <a href="/gallery">
             Галерея
