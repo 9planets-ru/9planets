@@ -1,0 +1,41 @@
+{% extends "partials/base.html" %}
+{% block top_body_class%}modular{%endblock%}
+{% block content %}
+<div class="content-wrapper blog-content-list g-grid pure-g-r">
+    <div id="listing" class="g-block pure-u-3-4">
+        {% for page in section.pages %}
+        {% if page.extra.image %}
+        {% set image_path = page.extra.image %}
+        {% else %}
+        {% set image_path = page.assets | sort | first %}
+        {%endif%}
+
+        {%if image_path %}
+        {% set preview = resize_image(path=image_path, width=400, height=280, op="fit") %}
+        {% endif %}
+        <div class="list-item">
+            <div class="list-blog-header">
+                {% if image_path %}
+                <img alt="" class="post-image" src="{{preview.url | safe}}" />
+                {% endif %}
+                <h4><a href="{{page.path | safe}}">{{page.title}}</a></h4>
+                {% if page.extra.author %}
+                <span class="list-blog-author">
+                    <i class="fa fa-user"></i>
+                    {{page.extra.author | safe}}
+                </span>
+                {% endif %}
+            </div>
+
+            <div class="list-blog-padding">
+                {{page.summary | safe}}
+                <p style="text-align:right;"><a href="{{page.path | safe}}">Читать далее...</a></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div id="sidebar" class="g-block size-1-4 pure-u-1-4">
+        {% include 'partials/sidebar.html' %}
+    </div>
+</div>
+{% endblock content %}

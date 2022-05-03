@@ -1,0 +1,143 @@
+<div class="sidebar-content">
+  <img src="/images/about-200x300.jpg">
+  <ul style="list-style:none;margin-bottom:0.4rem;">
+    <li style="text-transform:uppercase;">Омкарнатх</li>
+    <li>(Осинская Ольга)</li>
+    <li>
+      <span style="white-space:nowrap;">
+        <i class="fa fa-mobile fa-fw" style="margin-right: 0.1rem;"></i>
+        <i class="fa fa-telegram fa-fw" style="margin-right: 0.1rem;"></i>
+        <i class="fa fa-whatsapp fa-fw" style="margin-right: 0.1rem;"></i>
+        <a href="tel:+79260500785">+7 (926) 050 0785</a>
+      </span>
+    </li>
+    <li>
+      <span style="white-space:nowrap;">
+        <i class="fa fa-envelope-o fa-fw" style="margin-right: 0.2rem;"></i>
+        <a href="mailto:omkarnath@9planets.ru">omkarnath@9planets.ru</a>
+      </span>
+    </li>
+    <li>
+      <span style="white-space:nowrap;">
+        <i class="fa fa-skype fa-fw" style="margin-right: 0.2rem;"></i>
+        <a href="skype:live:b2e3b6b4bfa7c9e2?chat">9planets@mail.ru</a>
+      </span>
+    </li>
+    <li></li>
+  </ul>
+
+  <!--a href="https://www.facebook.com/profile.php?id=100007535177323">
+    <i class="fa fa-facebook-official fa-2x" style="margin-left: 1.6rem; margin-right:0.5rem;margin-bottom:1rem;" aria-hidden="true"></i>
+  </a-->
+
+  <a href="https://vk.com/omkaranath" <i class="fa fa-vk fa-2x" style="margin-right: 0.5rem;" aria-hidden="true"></i>
+  </a>
+
+  <!--a href="https://www.instagram.com/9planets.ru/"
+  <i class="fa fa-instagram fa-2x" style="margin-right: 0.5rem;"  aria-hidden="true"></i>
+  </a-->
+
+  <a href="https://www.pinterest.ru/omkaranath/" <i class="fa fa-pinterest fa-2x" aria-hidden="true"></i>
+  </a>
+
+  <a href="https://www.youtube.com/channel/UCvjuSljypA6yjCzwVJ3-aIw" <i class="fa fa-youtube fa-2x"
+    aria-hidden="true"></i>
+  </a>
+
+  {% if not params.hide_button %}
+  <a class="button button-fullwidth" href="/contact">
+    <h4 class="register">Записаться</h4>
+  </a>
+  {% endif %}
+
+  {% if not section.extra.sidebar.hide_blog %}
+  <div class="sidebar-content">
+    <h4>Cтатьи</h4>
+    <div class="search-container">
+      <input id="search" type="search" placeholder="🔎 Поиск">
+
+      <div class="search-results">
+        <div class="search-results__items"></div>
+      </div>
+    </div>
+    <ul>
+      {% set blog_section = get_section(path='blog/_index.md') %}
+      {% for post in blog_section.pages | sort(attribute="date") | reverse | slice(end=2) %}
+      {% if post.extra.image %}
+      {% set image_path = post.extra.image %}
+      {% else %}
+      {% set image_path = post.assets | sort | first %}
+      {%endif%}
+
+      {%if image_path %}
+      {% set preview = resize_image(path=image_path, width=300, height=300, op="fit") %}
+      {% endif %}
+      <li class="recent-posts">
+        {% if image_path %}
+        <img alt="" src="{{preview.url | safe}}" />
+        {% endif %}
+        <h5 class="post-header"><a href="{{post.path | safe}}">{{post.title}}</a></h5>
+        <p class="post-abstract">
+          {{post.extra.abstract | default(value="")}}
+          <span style="white-space:nowrap;">
+            <a class="post-read-more" href="{{post.path | safe}}">
+              <i class="fa fa-post-read-more"></i>
+            </a>
+          </span>
+        </p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if not section.extra.sidebar.hide_reviews %}
+  <div class="sidebar-content">
+    <h4>Отзывы</h4>
+    <ul>
+      {% set reviews_section = get_section(path='reviews/_index.md') %}
+      {% for post in reviews_section.pages | slice(end=section.extra.sidebar.reviews_count|default(value=1)) %}
+      {% if post.extra.image %}
+      {% set image_path = post.extra.image %}
+      {% else %}
+      {% set image_path = post.assets | sort | first %}
+      {%endif%}
+
+      {%if image_path %}
+      {% set preview = resize_image(path=image_path, width=300, height=300, op="fit") %}
+      {% endif %}
+      <li class="recent-posts">
+        {% if image_path %}
+        <img alt="" src="{{preview.url | safe}}" />
+        {% endif %}
+        <h5 class="post-header"><a href="{{post.path | safe}}">{{post.title}}</a></h5>
+        <p class="post-abstract">
+          {{post.extra.abstract | default(value="")}}
+          <span style="white-space:nowrap;">
+            <a class="post-read-more" href="{{post.path | safe}}">
+              <i class="fa fa-post-read-more"></i>
+            </a>
+          </span>
+        </p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if not section.extra.sidebar.hide_apps %}
+  <div class="sidebar-content">
+    <h4>Приложения</h4>
+    <a href="https://play.google.com/store/apps/details?id=org.astrofox.midday">
+      <img src="/images/abhijit.png" />
+    </a>
+    <p></p>
+    <a href="https://play.google.com/store/apps/details?id=ru.astrofox.brahma_alarm">
+      <img src="/images/brahma.png" />
+    </a>
+  </div>
+  {% endif %}
+
+
+
+</div>

@@ -1,0 +1,41 @@
+{% extends "partials/base.html" %}
+{% block top_body_class%}modular{%endblock%}
+{% block head %}
+    {{ super() }}
+
+    {% if section.extra.gallery %}
+    <link href="/unite-gallery/unite-gallery.css" type="text/css" rel="stylesheet">
+    <script src="/unite-gallery/unitegallery.min.js"></script>
+    <script src="/unite-gallery/themes/tiles/ug-theme-tiles.js"></script>
+    {% endif %}
+
+{% endblock head %}
+
+{% block content %}
+<div class="content-wrapper archive-list g-grid pure-g-r">
+    <div id="listing" class="g-block {% if page.header.sidebar.enabled %} pure-u-3-4 {% endif %}">
+        {{ section.content | safe }}
+
+        {% if section.extra.gallery %}
+        <div class="modular-row gallery-container ">
+
+            <div id="unite-gallery" style="display:none;">
+                {% for image_path in section.assets %}
+                <img alt="" data-description="" src="{{image_path | safe}}"
+                    data-image="{{image_path | safe}}">
+                {%endfor%}
+            </div>
+            <script type="text/javascript">
+                jQuery(document).ready(function () {
+                    jQuery("#unite-gallery").unitegallery({ "tiles_type": "justified", "gallery_theme": "tiles" });
+                });
+            </script>
+        </div>
+        {% endif %}
+
+    </div>
+    <div id="sidebar" class="g-block size-1-4 pure-u-1-4">
+        {% include 'partials/sidebar.html' %}
+    </div>
+</div>
+{% endblock content %}

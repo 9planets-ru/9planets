@@ -1,0 +1,6 @@
+// Modular Gallery styling
+.gallery-container {
+        text-align: center;
+        @include clearfix;
+        padding-bottom: 2rem;
+}

@@ -1,0 +1,14 @@
+.button {
+	@extend %button;
+	@include button-color($core-accent);
+}
+
+.button-secondary {
+	@extend %button;
+	@include button-color($secondary-link);
+}
+
+.button-footer {
+	@extend %button;
+	@include button-color($black);
+}

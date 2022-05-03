@@ -1,0 +1,67 @@
+.default-animation {
+	@include transition(all 0.5s ease);
+}
+
+.padding-horiz {
+	padding-left: $padding-horiz;
+	padding-right: $padding-horiz;
+
+	@media only all and (max-width: 95rem) {
+		padding-left: $padding-horiz - 7rem;
+		padding-right: $padding-horiz - 7rem;
+	}
+
+	@media only all and (max-width: 80rem) {
+		padding-left: $padding-horiz - 10rem;
+		padding-right: $padding-horiz - 10rem;
+	}
+
+	@media only all and (max-width: 70rem) {
+		padding-left: $padding-horiz - 13rem;
+		padding-right: $padding-horiz - 13rem;
+	}
+
+	/*@include breakpoint(desktop-range) {
+		padding-left: $padding-horiz - 7rem;
+		padding-right: $padding-horiz - 7rem;
+	}
+	@include breakpoint(tablet-range) {
+		padding-left: $padding-horiz - 10rem;
+		padding-right: $padding-horiz - 10rem;
+	}
+	@include breakpoint(mobile-only) {
+		padding-left: $padding-horiz - 12rem;
+		padding-right: $padding-horiz - 12rem;
+	}*/
+}
+
+.padding-nav {
+	padding-right:2*$padding-horiz;
+
+	@media only all and (max-width: 95rem) {
+		padding-right: 2*($padding-horiz - 7rem);
+	}
+
+	@media only all and (max-width: 80rem) {
+		padding-right: 2*($padding-horiz - 10rem);
+	}
+
+	@media only all and (max-width: 70rem) {
+		padding-right: 2*($padding-horiz - 13rem);
+	}
+
+	/*@include breakpoint(desktop-range) {
+		padding-right: 2*($padding-horiz - 7rem);
+	}
+	@include breakpoint(tablet-range) {
+		padding-right: 2*($padding-horiz - 10rem);
+	}
+	@include breakpoint(mobile-only) {
+		padding-right: 2*($padding-horiz - 12rem);
+	}*/
+}
+
+.padding-vert {
+	padding-top: $padding-vert;
+	padding-bottom: $padding-vert;
+}

@@ -1,0 +1,32 @@
+<ul class="navigation">
+    <li {% if current_path == "/" %} class="active" {% endif %}>
+        <a href="/">
+            Главная
+        </a>
+    </li>
+    <li {% if current_path is starting_with("/about") %} class="active" {% endif %}>
+        <a href="/about">
+            Обо мне
+        </a>
+    </li>
+    <li {% if current_path is starting_with("/services") %} class="active" {% endif %}>
+        <a href="/services">
+            Услуги
+        </a>
+    </li>
+    <li {% if current_path is starting_with("/reviews") %} class="active" {% endif %}>
+        <a href="/reviews">
+            Отзывы
+        </a>
+    </li>
+    <li {% if current_path is starting_with("/blog") %} class="active" {% endif %}>
+        <a href="/blog">
+            Блог
+        </a>
+    </li>
+    <li {% if current_path is starting_with("/gallery") %} class="active" {% endif %}>
+        <a href="/gallery">
+            Галерея
+        </a>
+    </li>
+</ul>

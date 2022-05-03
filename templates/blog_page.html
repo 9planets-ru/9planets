@@ -1,0 +1,95 @@
+{% extends "partials/base.html" %}
+
+{% block head %}
+{{ super() }}
+
+{% if page.extra.gallery %}
+<link href="/unite-gallery/unite-gallery.css" type="text/css" rel="stylesheet">
+<script src="/unite-gallery/unitegallery.min.js"></script>
+<script src="/unite-gallery/themes/tiles/ug-theme-tiles.js"></script>
+{% endif %}
+
+{% endblock head %}
+
+{% block content %}
+<div class="flush-top blog-header blog-header-image"
+    style="background: #B4B093 url(/images/blog-header.png) no-repeat right;">
+    <h1>{{page.title}}</h1>
+</div>
+
+<div id="breadcrumbs" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+    {% for parent in page.ancestors %}
+    {% set parent_page = get_section(path=parent) %}
+    <a href="{{parent_page.path | safe}}" itemprop="url"><span
+            itemprop="{{parent_page.title}}">{{parent_page.title}}</span></a>
+    <i class="fa fa-angle-right"></i>
+    {% endfor %}
+    <span itemprop="title">{{page.title}}</span>
+</div>
+
+<div class="blog-content-item g-grid pure-g-r">
+    <div id="item" class="g-block pure-u-2-3">
+        <div class="list-item">
+
+            <div class="list-blog-header">
+            </div>
+
+            {% if page.extra.author %}
+            <div style="margin-top:1.2rem;"></div>
+            <span class="list-blog-author">
+                <i class="fa fa-user"></i>
+                {{page.extra.author | safe}}
+            </span>
+            {% endif %}
+
+            <div class="list-blog-padding">
+                {{ page.content | safe }}
+
+                {% if page.extra.gallery %}
+                <div class="gallery-container ">
+
+                    <div id="unite-gallery" style="display:none;">
+                        {% for asset_path in page.assets | sort %}
+                        {% set image_path = asset_path | split(pat="/") | last %}        
+                        <img alt="" data-description="" src="{{current_path | safe}}{{image_path | safe}}"
+                            data-image="{{current_path | safe}}{{image_path | safe}}">
+                        {%endfor%}
+                    </div>
+                    <script type="text/javascript">
+                        jQuery(document).ready(function () {
+                            jQuery("#unite-gallery").unitegallery({ "gallery_theme": "tiles" });
+                        });
+                    </script>
+                </div>
+                {% else %}
+
+                {% if page.extra.image %}
+                {% set image_path = page.extra.image %}
+                {% else %}
+                {% set image_path = page.assets | sort | first | split(pat="/") | last %}
+                {%endif%}
+                <img alt="" src="{{image_path | safe}}" />
+
+                {% endif %}
+
+                {% block prev_next %}
+                <p class="prev-next">
+                    {% if page.later %}
+                    <a class="button" href="{{page.later.path | safe}}"><i class="fa fa-chevron-left"></i> Назад</a>
+                    {% endif %}
+
+                    {% if page.earlier %}
+                    <a class="button" href="{{page.earlier.path | safe }}">Вперед <i
+                            class="fa fa-chevron-right"></i></a>
+                    {% endif %}
+                </p>
+                {% endblock %}
+
+            </div>
+        </div>
+    </div>
+    <div id="sidebar" class="g-block size-1-4 pure-u-1-4">
+        {% include 'partials/sidebar.html' %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,107 @@
+{% extends "partials/base.html" %}
+{% block top_body_class%}modular{%endblock%}
+{% block content %}
+<div class="content-wrapper archive-list g-grid pure-g-r">
+    <div id="listing" class="g-block {% if page.header.sidebar.enabled %} pure-u-3-4 {% endif %}">
+        <div class="modular-row features big">
+            <h4>консультации специалиста по индийской астрологии – джйотишу</h4>
+
+            <div class="feature-items">
+                {% for service in section.extra.services %}
+                <div class="feature   {% if loop.index == 0 %} feature-first {% endif %}">
+                    <div class="feature-content">
+                        <p class="feature-text">{{service.text | safe }}</p>
+                    </div>
+                    <a class="feature-more-link" href="{{service.link}}">Подробнее | Записаться</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="modular-row features big">
+            <div class="feature-items">
+                {% for service in section.extra.services2 %}
+                <div class="feature   {% if loop.index == 0 %} feature-first {% endif %}">
+                    <div class="feature-content">
+                        <p class="feature-text">{{service.text | safe }}</p>
+                    </div>
+                    <a class="feature-more-link" href="{{service.link}}">Подробнее | Записаться</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="modular-row bottom about">
+            {{ section.content | safe }}
+        </div>
+
+
+        <div class="modular-row callout">
+            <h2>Уникальные предложения</h2>
+
+            <div class="notebooks">
+                {% for service in section.extra.uniq %}
+                <div class="notebook">
+                    <a href="{{service.link}}" class="portfolio-link" data-toggle="modal">
+                        <div class='screen'>
+                            <div class="screen-content" style="background-image: url({{service.image | safe}})">
+                            </div>
+                        </div>
+                    </a>
+                    <div class='keyboard1'></div>
+                    <h4>{{service.name}}</h4>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="callout-line"></div>
+        </div>
+
+        <div class="modular-row callout">
+            <div class="pricing-container">
+                {% for pricing in section.extra.pricing.main %}
+                <div class="pricing-item pricing-main">
+                    <div class="name">{{pricing.name}}</div>
+                    <div class="price">{{pricing.price}} &#8381;</div>
+                    <div class="foot">
+                        <a class="button" href="{{pricing.link | safe}}">Подробнее</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="pricing-container">
+                {% for pricing in section.extra.pricing.other %}
+                <div class="pricing-item">
+                    <div class="name">{{pricing.name}}</div>
+                    <div class="price">{{pricing.price}} &#8381;</div>
+                    <div class="foot">
+                        <a class="button" href="{{pricing.link | safe}}">Подробнее</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="callout-line"></div>
+        </div>
+
+        <div class="modular-row bottom small">
+            <hr />
+            <a class="button primary" href="/contact">Записаться</a>
+        </div>
+
+    </div>
+    <div id="sidebar" class="g-block size-1-4 pure-u-1-4">
+        {% include 'partials/sidebar.html' %}
+    </div>
+</div>
+{% endblock content %}
+
+{% block bottom %}
+<script>
+    $(function () {
+        $('.feature').matchHeight();
+        $('.footer-module').matchHeight();
+    });
+</script>
+{% endblock bottom %}

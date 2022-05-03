@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    {% block head %}
+    <meta charset="utf-8" />
+
+    {% include 'partials/metadata.html' %}
+
+    {% block social_meta %}
+    {% endblock social_meta %}
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    {% include 'partials/favicon.html' %}
+
+    <title>
+        {% if section.title %}{{ section.title }} | 
+        {% elif page.title %} {{ page.title }} |  
+        {% endif %}
+        {{ config.title }}
+    </title>
+    <link rel="canonical" href="{{ current_url | safe }}">
+    </link>
+
+    <link href="/nucleus.css" type="text/css" rel="stylesheet">
+    <link href="/template.css" type="text/css" rel="stylesheet">
+    <link href="/particles.css" type="text/css" rel="stylesheet">
+    <link href="/search.css" type="text/css" rel="stylesheet">
+
+    <link href="/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link href="/css/slidebars.min.css" type="text/css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/js/deliver.js"></script>
+    <script src="/js/modernizr-custom.js"></script>
+    <script src="/js/jquery.matchHeight.js"></script>
+
+    {% endblock head%}
+</head>
+
+<body id="top" class="{% block top_body_class %} {% endblock %} header-image fullwidth">
+    <!-- Yandex.Metrika counter -->
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Facebook API -->
+    <div id="fb-root"></div>
+    <!-- /Facebook API -->
+
+    <!-- VK API -->
+    <div id="vk_api_transport"></div>
+    <!-- /VK API -->
+
+
+    <div id="sb-site">
+        {% block header %}
+        <header id="header">
+            <div class="logo">
+                <div id="navbar">
+                    {% block header_navigation %}
+                    {% include 'partials/navigation.html' %}
+                    {% endblock header_navigation %}
+
+                    <span class="panel-activation sb-toggle-left navbar-left menu-btn fa fa-bars"></span>
+                </div>
+            </div>
+        </header>
+        {% endblock header %}
+
+        {% block body %}
+        <section id="body">
+
+            {% block content %}
+            {% endblock content %}
+
+            {% block footer %}
+            {% include 'partials/footer.html' %}
+            {% endblock %}
+        </section>
+        {% endblock body %}
+
+    </div>
+    <div class="sb-slidebar sb-left sb-width-thin">
+        <div id="panel">
+            {% include 'partials/navigation.html' %}
+        </div>
+    </div>
+
+    {% block bottom %}
+    {% endblock bottom %}
+
+    <script src="/js/slidebars.min.js"></script>
+    <script>
+        $(function () {
+            $(document).ready(function () {
+                $.slidebars({
+                    hideControlClasses: true,
+                    scrollLock: true
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript" src="{{ get_url(path="elasticlunr.min.js") }}"></script>
+    <script type="text/javascript" src="/js/lunr.stemmer.support.min.js" }}"></script>
+    <script type="text/javascript" src="/js/lunr.ru.min.js" }}"></script>
+    
+    <script type="text/javascript" src="{{ get_url(path="search_index.ru.js") }}"></script>
+    <script type="text/javascript" src="/js/search.js" }}"></script>
+
+</body>
+
+{% block after_body %}
+{% endblock after_body %}
+
+</html>

@@ -1,0 +1,72 @@
+{% extends "partials/base.html" %}
+{% block top_body_class%}modular{%endblock%}
+{% block head %}
+    {{ super() }}
+
+    <link href="/css/pagination.css" type="text/css" rel="stylesheet">
+
+{% endblock head %}
+{% block content %}
+<div class="content-wrapper blog-content-list g-grid pure-g-r">
+    <div id="listing" class="g-block pure-u-3-4">
+        {% for page in paginator.pages %}
+        {% if page.extra.image %}
+        {% set image_path = page.extra.image %}
+        {% else %}
+        {% set image_path = page.assets | sort | first %}
+        {%endif%}
+
+        {%if image_path %}
+        {% set preview = resize_image(path=image_path, width=400, height=280, op="fit") %}
+        {% endif %}
+        <div class="list-item">
+            <div class="list-blog-header">
+                {% if image_path %}
+                <img alt="" class="post-image" src="{{preview.url | safe}}" />
+                {% endif %}
+                <h4><a href="{{page.path | safe}}">{{page.title}}</a></h4>
+                {% if page.extra.author %}
+                <span class="list-blog-author">
+                    <i class="fa fa-user"></i>
+                    {{page.extra.author | safe}}
+                </span>
+                {% endif %}
+            </div>
+
+            <div class="list-blog-padding">
+                {{page.summary | safe}}
+                <p style="text-align:right;"><a href="{{page.path | safe}}">Читать далее...</a></p>
+            </div>
+        </div>
+        {% endfor %}
+
+
+        <ul class="pagination">
+            {% if paginator.previous %}
+            <li><a rel="prev" href="{{paginator.previous | safe }}">&laquo;</a></li>
+            {% else %}
+                <li><span>&laquo;</span></li>
+            {% endif %}
+
+            {% set pagination_index = range(start=1, end=paginator.number_pagers + 1) %}
+            {% for pager_index in pagination_index %}
+                {% if pager_index == paginator.current_index %}
+                <li><span class="active">{{paginator.current_index}}</span></li>
+                {% else %}
+                <li><a href="{{paginator.base_url ~ pager_index | safe }}">{{pager_index}}</a></li>
+                {% endif %}    
+            {% endfor %}
+            
+            {% if paginator.next %}
+            <li><a rel="prev" href="{{paginator.next | safe }}">&raquo;</a></li>
+            {% else %}
+                <li><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+
+    </div>
+    <div id="sidebar" class="g-block size-1-4 pure-u-1-4">
+        {% include 'partials/sidebar.html' %}
+    </div>
+</div>
+{% endblock content %}
