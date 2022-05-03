@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://9planets-ru.github.io/"
+base_url = "https://9planets-ru.github.io"
 
 title = "9 Planets"
 default_language = "ru"
