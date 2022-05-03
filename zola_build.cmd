@@ -1,0 +1,1 @@
+zola.exe build -o docs
