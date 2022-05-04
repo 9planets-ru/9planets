@@ -1,37 +1,18 @@
 <ul class="navigation">
-    <li {% if current_path == "/" %} class="active" {% endif %}>
-        <a href="/">
-            Главная
+    {% set navigation_sections = ['', 'about/', 'services/', 'reviews/', 'blog/', 'contact/', 'gallery/'] %}
+
+    {% for nav_item in navigation_sections -%}
+        {% set nav_section = get_section(path=nav_item ~ '_index.md') -%}
+        {% if nav_section.path == '/' -%}
+            {% set is_active = current_path == nav_section.path -%}
+        {% else -%}
+            {% set is_active = current_path is starting_with(nav_section.path) -%}
+        {% endif -%}
+    <li {% if is_active %} class="active" {% endif %}>
+        <a href="{{nav_section.path | safe}}">
+            {{nav_section.title}}
         </a>
-    </li>
-    <li {% if current_path is starting_with("/about") %} class="active" {% endif %}>
-        <a href="/about">
-            Обо мне
-        </a>
-    </li>
-    <li {% if current_path is starting_with("/services") %} class="active" {% endif %}>
-        <a href="/services">
-            Услуги
-        </a>
-    </li>
-    <li {% if current_path is starting_with("/reviews") %} class="active" {% endif %}>
-        <a href="/reviews">
-            Отзывы
-        </a>
-    </li>
-    <li {% if current_path is starting_with("/blog") %} class="active" {% endif %}>
-        <a href="/blog">
-            Блог
-        </a>
-    </li>
-    <li {% if current_path is starting_with("/contact") %} class="active" {% endif %}>
-        <a href="/contact">
-            Контакты
-        </a>
-    </li>
-    <li {% if current_path is starting_with("/gallery") %} class="active" {% endif %}>
-        <a href="/gallery">
-            Галерея
-        </a>
-    </li>
+    </li> 
+    {% endfor -%}
 </ul>
+
