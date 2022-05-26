@@ -1,5 +1,5 @@
 <ul class="navigation">
-    {% set navigation_sections = ['', 'about/', 'services/', 'reviews/', 'blog/', 'contact/', 'gallery/'] %}
+    {% set navigation_sections = ['', 'about/', 'services/', 'reviews/', 'blog/', 'contact/', 'muhurta/', 'gallery/'] %}
 
     {% for nav_item in navigation_sections -%}
         {% set nav_section = get_section(path=nav_item ~ '_index.md') -%}
