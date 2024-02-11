@@ -1,4 +1,4 @@
----
+﻿---
 title: 'Контакты'
 template: 'single.html'
 
@@ -9,5 +9,4 @@ extra:
     hide_apps: true
 ---
 
-<script src="https://yastatic.net/s3/frontend/forms/_/embed.js"></script>
-<iframe src="https://forms.yandex.ru/cloud/627191f3632ba5789c530a01/?iframe=1" frameborder="0" name="ya-form-627191f3632ba5789c530a01" width="650"></iframe>
+<script src="https://forms.yandex.ru/_static/embed.js"></script><iframe src="https://forms.yandex.ru/u/65c8f749eb614698aa45bacc/?iframe=1" frameborder="0" name="ya-form-65c8f749eb614698aa45bacc" width="650"></iframe>
