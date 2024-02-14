@@ -1,4 +1,4 @@
----
+﻿---
 title: 'Главная'
 
 extra:
@@ -29,20 +29,20 @@ extra:
   pricing:
     main:
       - name: 'Стандартная консультация'
-        price: 5000
+        price: 7000
         link: '/services/basic-consult'
       - name: 'Комплексная консультация'
-        price: 9000
+        price: 12000
         link: '/services/complex-consult'
     other:
       - name: 'Мухурта'
-        price: 1000
+        price: 5000
         link: '/services/muhurta'
       - name: 'Наваграха-пуджа'
-        price: 1000
+        price: 5000
         link: '/services/puja'
       - name: 'Совместимость'
-        price: 6000
+        price: 8000
         link: '/services/compatibility'
 ---
 
