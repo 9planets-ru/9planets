@@ -1,5 +1,5 @@
 ﻿---
-title: 'Главная'
+title: 'лавная'
 
 extra:
   services:
